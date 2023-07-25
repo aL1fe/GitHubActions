@@ -44,3 +44,4 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
           docker load -i ~/git-hub_actions.tar
+          docker run -d --name git-hub_actions -p 7777:5203 al1fe/git-hub_actions
