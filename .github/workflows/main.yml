@@ -43,5 +43,8 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
+          docker stop git-hub_actions || true
+          docker rm git-hub_actions || true
+          docker image rm al1fe/git-hub_actions || true
           docker load -i ~/git-hub_actions.tar
-          docker run -d --name git-hub_actions -p 7777:5203 al1fe/git-hub_actions
+          docker run -d --name git-hub_actions -p 7777:7090 al1fe/git-hub_actions
