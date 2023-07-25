@@ -6,8 +6,8 @@ public class TimeController : ControllerBase
 {
     [HttpGet]
     [Route("/WhatTime")]
-    public DateTime WhatTime()
+    public string WhatTime()
     {
-        return DateTime.Now;
+        return "Server date time is " + DateTime.Now;
     }
 }
