@@ -30,9 +30,7 @@ jobs:
         port: ${{ secrets.SERVER_PORT }}
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
-        script: |
-          docker stop git-hub_actions || true  # Остановка текущего контейнера, если он запущен
-          docker rm git-hub_actions || true  # Удаление предыдущего контейнера, если он существует
-          docker load -i git-hub_actions.tar  # Загрузка образа из tarball
-          docker run -d --name git-hub_actions -p 7777:5203 al1fe/git-hub_actions  # Запуск контейнера
+        script: |          
+          docker load -i git-hub_actions.tar
+          docker images
     
