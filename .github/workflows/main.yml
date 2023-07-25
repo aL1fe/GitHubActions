@@ -16,10 +16,10 @@ jobs:
     - name: Build the Docker image
       working-directory: BackEnd
       run: |
-        docker build . --file Dockerfile -t al1fe/GitHubActions
+        docker build . --file Dockerfile -t al1fe/git-hub_actions
         docker images
         
     - name: Save Docker image as tarball
       run: |
-        docker save al1fe/GitHubActions -o GitHubActions.tar
+        docker save al1fe/git-hub_actions -o git-hub_actions.tar
     
