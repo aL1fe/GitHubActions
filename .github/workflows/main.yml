@@ -47,4 +47,4 @@ jobs:
           docker rm git-hub_actions || true
           docker image rm al1fe/git-hub_actions || true
           docker load -i ~/git-hub_actions.tar
-          docker run -d --name git-hub_actions -p 7777:7090 al1fe/git-hub_actions
+          docker run -d --name git-hub_actions -p 7777:80 al1fe/git-hub_actions
