@@ -22,8 +22,8 @@ jobs:
     - name: Save Docker image as tarball
       run: |
         docker save al1fe/git-hub_actions -o git-hub_actions.tar
-      # env:
-        # DOCKER_IMAGE_TARBALL: git-hub_actions.tar
+      env:
+        DOCKER_IMAGE_TARBALL: git-hub_actions.tar
         
     - name: copy image to the server
       uses: appleboy/scp-action@master
