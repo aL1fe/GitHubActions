@@ -34,3 +34,6 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         source: "git-hub_actions.tar"
         target: "~/"
+        script: |
+          docker load -i ~/git-hub_actions.tar
+          
