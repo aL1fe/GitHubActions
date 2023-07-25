@@ -22,8 +22,8 @@ jobs:
     - name: Save Docker image as tarball
       run: |
         docker save al1fe/git-hub_actions -o git-hub_actions.tar
-      # env:
-        # DOCKER_IMAGE_TARBALL: git-hub_actions.tar
+      env:
+        DOCKER_IMAGE_TARBALL: git-hub_actions.tar
         
     - name: SSH into server, down containers and delete image
       uses: appleboy/ssh-action@master
@@ -32,7 +32,7 @@ jobs:
         port: ${{ secrets.SERVER_PORT }}
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
-        source: git-hub_actions.tar
-        target: /home/al1fe/
+        script: |
+          scp ${{ env.DOCKER_IMAGE_TARBALL }}:~/al1fe-eng-bot.tar
 
     
