@@ -31,9 +31,7 @@ jobs:
         port: ${{ secrets.SERVER_PORT }}
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
-        source: |
-          git-hub_actions.tar
-          /deploy/docker-compose.yml
+        source: git-hub_actions.tar
         target: "~/" 
 
     # - name: Copy files to the server
