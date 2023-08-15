@@ -1,9 +1,0 @@
-version: '3'
-name: GitHubActions
-services:
-  bot:
-    container_name: git-hub_actions
-    image: al1fe/git-hub_actions
-    restart: always
-    environment:
-      ENVIRONMENT: Production
