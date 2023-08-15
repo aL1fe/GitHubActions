@@ -8,7 +8,7 @@ public class TimeController : ControllerBase
     [Route("/WhatTime")]
     public string WhatTime()
     {
-        //return "Server date time is " + DateTime.Now;
-        return "SERVER DATE TIME IS - " + DateTime.Now;
+        return "Server date time is " + DateTime.Now;
+        // return "SERVER DATE TIME IS - " + DateTime.Now;
     }
 }
