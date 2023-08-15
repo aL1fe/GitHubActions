@@ -1,11 +1,9 @@
 version: '3'
 name: git-hub_actions
 services:
-  bot:
+  git-hub_actions:
     container_name: git-hub_actions
     image: al1fe/git-hub_actions
     restart: always
     ports:
       - "7777:80"
-    environment:
-      ENVIRONMENT: Production
