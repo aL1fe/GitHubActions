@@ -6,5 +6,4 @@ services:
     image: al1fe/git-hub_actions
     restart: always
     ports:
-      - "7080:80"
-      - "7777:443"
+      - "7777:80"
