@@ -13,6 +13,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       
+    - name: Build the Docker image
+      working-directory: BackEnd
+      run: |
+        docker build . --file Dockerfile -t al1fe/git-hub_actions
+        
+    - name: Save Docker image as tarball archive
+      run: |
+        docker save al1fe/git-hub_actions -o git-hub_actions.tar    
+    
     - name: Copy files to the server
       uses: appleboy/scp-action@master
       with:
@@ -20,34 +29,9 @@ jobs:
         port: ${{ secrets.SERVER_PORT }}
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
-        source: "deploy/docker-compose.yml"
-        target: "~/"  
-        strip_components: 2
-      
-      
-      
-    # - name: Build the Docker image
-      # working-directory: BackEnd
-      # run: |
-        # docker build . --file Dockerfile -t al1fe/git-hub_actions
-        
-    # - name: Save Docker image as tarball archive
-      # run: |
-        # docker save al1fe/git-hub_actions -o git-hub_actions.tar
-        # ls -la
-        # cd ..
-        # ls -la        
-    
-    # - name: Copy files to the server
-      # uses: appleboy/scp-action@master
-      # with:
-        # host: ${{ secrets.SERVER_HOST }}
-        # port: ${{ secrets.SERVER_PORT }}
-        # username: ${{ secrets.SERVER_USERNAME }}
-        # password: ${{ secrets.SERVER_PASSWORD }}
-        # source: "docker-compose.yml,git-hub_actions.tar"
-        # source: "deploy/docker-compose.yml,git-hub_actions.tar"
-        # target: "~/"  
+        source: "docker-compose.yml,git-hub_actions.tar"
+        source: "deploy/docker-compose.yml,git-hub_actions.tar"
+        target: "~/gitHubActions/"  
           
     # - name: SSH into server, down container and delete image
       # uses: appleboy/ssh-action@master
