@@ -18,6 +18,8 @@ jobs:
         ls -la
         cd ..
         ls -la 
+        cd ..
+        ls -la 
 
     # - name: Build the Docker image
       # working-directory: BackEnd
