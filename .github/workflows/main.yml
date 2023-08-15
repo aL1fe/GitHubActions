@@ -17,35 +17,41 @@ jobs:
       working-directory: BackEnd
       run: |
         docker build . --file Dockerfile -t al1fe/git-hub_actions
-        docker images
+      
+        # docker images
         
-    - name: Save Docker image as tarball
+    - name: Save Docker image as tarball archive
       run: |
         docker save al1fe/git-hub_actions -o git-hub_actions.tar
-      env:
-        DOCKER_IMAGE_TARBALL: git-hub_actions.tar
         
-    - name: copy image to the server
+    - name: Copy files to the server
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.SERVER_HOST }}
         port: ${{ secrets.SERVER_PORT }}
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
-        source: "git-hub_actions.tar"
-        target: "~/"        
+        source: |
+            git-hub_actions.tar
+            /deploy/docker-compose.yml
+        target: "~/" 
+
+    # - name: Copy files to the server
+      # run: |
+        # sshpass -p ${{ secrets.SERVER_PASSWORD }} rsync -avz -e "ssh -p ${{ secrets.SERVER_PORT }}" git-hub_actions.tar ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:~/      
+        # sshpass -p ${{ secrets.SERVER_PASSWORD }} rsync -avz -e "ssh -p ${{ secrets.SERVER_PORT }}" docker-compose.yml ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/mnt/sdb/gitHubActions/
           
-    - name: SSH into server, down containers and delete image
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        port: ${{ secrets.SERVER_PORT }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        password: ${{ secrets.SERVER_PASSWORD }}
-        script: |
-          docker stop git-hub_actions || true  # Stop container if launched
-          docker rm git-hub_actions || true  # Delete container if exist
-          docker image rm al1fe/git-hub_actions || true  # Delete image if exist
-          docker load -i ~/git-hub_actions.tar  # Load docker image
-          docker run -d --name git-hub_actions -p 7777:80 al1fe/git-hub_actions  # Run docker container
-          rm ~/git-hub_actions.tar  # Delete image archive
+    # - name: SSH into server, down container and delete image
+      # uses: appleboy/ssh-action@master
+      # with:
+        # host: ${{ secrets.SERVER_HOST }}
+        # port: ${{ secrets.SERVER_PORT }}
+        # username: ${{ secrets.SERVER_USERNAME }}
+        # password: ${{ secrets.SERVER_PASSWORD }}
+        # script: |
+          # docker stop git-hub_actions || true  # Stop container if launched
+          # docker rm git-hub_actions || true  # Delete container if exist
+          # docker image rm al1fe/git-hub_actions || true  # Delete image if exist
+          # docker load -i ~/git-hub_actions.tar  # Load docker image
+          # docker run -d --name git-hub_actions -p 7777:80 al1fe/git-hub_actions  # Run docker container
+          # rm ~/git-hub_actions.tar  # Delete image archive
