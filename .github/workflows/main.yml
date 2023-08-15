@@ -40,19 +40,17 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
-          cd /mnt/sdb/git-hub_actions/deploy
+          cd /mnt/sdb/git-hub_actions/deploy             # Change directory
           docker compose down
-          docker rm git-hub_actions || true  # Delete container if exist
           docker image rm al1fe/git-hub_actions || true  # Delete image if exist
-          docker load -i ../git-hub_actions.tar  # Load docker image     
-          docker compose up          
+          docker load -i ../git-hub_actions.tar          # Load docker image     
+          docker compose up
+          docker images
           
         
-          # docker compose down        
+
           
           # docker stop git-hub_actions || true  # Stop container if launched
-          # docker rm git-hub_actions || true  # Delete container if exist
-          # docker image rm al1fe/git-hub_actions || true  # Delete image if exist
-          # docker load -i ~/git-hub_actions.tar  # Load docker image
+          # docker rm git-hub_actions || true  # Delete container if exist          
           # docker run -d --name git-hub_actions -p 7777:80 al1fe/git-hub_actions  # Run docker container
           # rm ~/git-hub_actions.tar  # Delete image archive
