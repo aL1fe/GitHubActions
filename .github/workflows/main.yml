@@ -16,10 +16,7 @@ jobs:
     - name: Save Docker image as tarball archive
       run: |
         ls -la
-        cd ..
-        ls -la 
-        cd ..
-        ls -la 
+        pwd
 
     # - name: Build the Docker image
       # working-directory: BackEnd
