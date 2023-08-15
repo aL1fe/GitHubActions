@@ -30,7 +30,7 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
         source: "deploy/docker-compose.yml,git-hub_actions.tar"
-        target: "/mnt/sdb/gitHubActions/"  
+        target: "/mnt/sdb/github_actions/"  
           
     - name: SSH into server, down container and delete image
       uses: appleboy/ssh-action@master
@@ -40,7 +40,7 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
-          cd /mnt/sdb/gitHubActions/deploy
+          cd /mnt/sdb/github_actions/deploy
           docker rm git-hub_actions || true  # Delete container if exist
           docker image rm al1fe/git-hub_actions || true  # Delete image if exist
           docker load -i ../git-hub_actions.tar  # Load docker image     
