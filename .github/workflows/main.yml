@@ -21,7 +21,7 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
         source: "deploy/docker-compose.yml"
-        target: "/mnt/sdb/gitHubActions2/"  
+        target: "/mnt/sdb/gitHubActions/"  
       
     # - name: Build the Docker image
       # working-directory: BackEnd
