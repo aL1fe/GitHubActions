@@ -1,5 +1,5 @@
 version: '3'
-name: GitHubActions
+name: git-hub_actions
 services:
   bot:
     container_name: git-hub_actions
