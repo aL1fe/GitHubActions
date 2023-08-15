@@ -44,7 +44,7 @@ jobs:
           docker compose down
           docker image rm al1fe/git-hub_actions || true  # Delete image if exist
           docker load -i ../git-hub_actions.tar          # Load docker image     
-          docker compose up     
+          docker compose up -d 
         
 
           
