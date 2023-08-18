@@ -12,7 +12,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production # Development
       - ASPNETCORE_URLS=https://+:443 # ;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=1234567890
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=./aspnetapp.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=./aspnetapp02.pfx
     volumes:
-      - ./aspnetapp.pfx:/app/aspnetapp02.pfx
+      - ./aspnetapp02.pfx:/app/aspnetapp02.pfx
       - ./etc/ssl/:/etc/nginx/ssl/
