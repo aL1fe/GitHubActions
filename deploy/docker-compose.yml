@@ -14,4 +14,5 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=1234567890
       - ASPNETCORE_Kestrel__Certificates__Default__Path=./aspnetapp.pfx
     volumes:
-      - ./aspnetapp.pfx:/app/aspnetapp.pfx
+      - ./aspnetapp.pfx:/app/aspnetapp02.pfx
+      - ./etc/ssl/:/etc/nginx/ssl/
