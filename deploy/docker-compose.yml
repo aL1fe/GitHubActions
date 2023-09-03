@@ -8,10 +8,11 @@ services:
     ports:
       - "7443:443"
       # - "7080:80"
+    env_file: .env
     environment:
       - ASPNETCORE_ENVIRONMENT=Production # Development
       - ASPNETCORE_URLS=https://+:443 # ;http://+:80
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=1234567890
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=$ASPNETCORE_Kestrel__Certificates__Default__Password
       - ASPNETCORE_Kestrel__Certificates__Default__Path=./aspnetapp02.pfx
     volumes:
       - ./aspnetapp02.pfx:/app/aspnetapp02.pfx
