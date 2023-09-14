@@ -40,7 +40,7 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
-          cd /mnt/sdb/git-hub_actions/deploy             # Change directory
+          cd $FOLDER             # Change directory
           docker compose down
           docker image rm al1fe/git-hub_actions || true  # Delete image if exist
           docker load -i ../git-hub_actions.tar          # Load docker image     
