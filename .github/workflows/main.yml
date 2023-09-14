@@ -1,5 +1,8 @@
 name: Deploy to Server
 
+env:
+  BUILD: 'We are currently running the Build job'
+          
 on:
   push:
     branches:
@@ -48,9 +51,7 @@ jobs:
           docker image rm al1fe/git-hub_actions || true  # Delete image if exist
           docker load -i ../git-hub_actions.tar          # Load docker image     
           docker compose up -d      
-        env:
-          BUILD: 'We are currently running the Build job'
-        
+       
 
           
           # docker stop git-hub_actions || true  # Stop container if launched
