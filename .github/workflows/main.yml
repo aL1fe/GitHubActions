@@ -39,12 +39,17 @@ jobs:
         port: ${{ secrets.SERVER_PORT }}
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
-        script: |
+        run: |
+          echo $FOLDER
+          echo "$FOLDER"
+          echo "$BUILD"
           cd $FOLDER             # Change directory
           docker compose down
           docker image rm al1fe/git-hub_actions || true  # Delete image if exist
           docker load -i ../git-hub_actions.tar          # Load docker image     
-          docker compose up -d 
+          docker compose up -d      
+        env:
+          BUILD: 'We are currently running the Build job'
         
 
           
