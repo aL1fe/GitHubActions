@@ -16,10 +16,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
            
-    - name: Build the Docker image
-      working-directory: BackEnd
-      run: |
-        docker build . --file Dockerfile -t al1fe/git-hub_actions
+    # - name: Build the Docker image
+      # working-directory: BackEnd
+      # run: |
+        # docker build . --file Dockerfile -t al1fe/git-hub_actions
+     
+    - name: Build Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: . # Директория, в которой находится Dockerfile
+        file: ./BackEnd/Dockerfile # Путь к Dockerfile
+        push: false # Если нужно загрузить образ в Docker Hub, измените на true
+        tags: al1fe/git-hub_actions:latest # Тег для создаваемого образа
         
     - name: Save Docker image as tarball archive
       run: |
