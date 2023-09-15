@@ -24,8 +24,8 @@ jobs:
     - name: Build Docker image
       uses: docker/build-push-action@v2
       with:
-        context: . # Директория, в которой находится Dockerfile
-        file: ./BackEnd/Dockerfile # Путь к Dockerfile
+        context: BackEnd/ # Директория, в которой находится Dockerfile
+        file: BackEnd/Dockerfile # Путь к Dockerfile
         push: false # Если нужно загрузить образ в Docker Hub, измените на true
         tags: al1fe/git-hub_actions:latest # Тег для создаваемого образа
         
