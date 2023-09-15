@@ -42,19 +42,20 @@ jobs:
         port: ${{ secrets.SERVER_PORT }}
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
-        run: |
-          echo $FOLDER
-          echo "$FOLDER"
-          echo "$BUILD"
-          cd $FOLDER             # Change directory
+        working-directory: /mnt/sdb/git-hub_actions/deploy
+        run: |          
           docker compose down
           docker image rm al1fe/git-hub_actions || true  # Delete image if exist
           docker load -i ../git-hub_actions.tar          # Load docker image     
           docker compose up -d      
        
 
-          
+          # cd /mnt/sdb/git-hub_actions/deploy  # Change directory
           # docker stop git-hub_actions || true  # Stop container if launched
           # docker rm git-hub_actions || true  # Delete container if exist          
           # docker run -d --name git-hub_actions -p 7777:80 al1fe/git-hub_actions  # Run docker container
           # rm ~/git-hub_actions.tar  # Delete image archive
+          
+          # export CONNECTION_STRING=${{ secrets.CONNECTION_STRING }}   # export variable to env variable
+          # echo CONNECTION_STRING=${{ secrets.CONNECTION_STRING }}  >> .env    # wright variable to the .env file
+          
